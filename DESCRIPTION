@@ -1,0 +1,25 @@
+Package: rhaskell
+Title: R-Haskell
+Description: R functions that implement some of Haskell\'s Prelude.
+Version: 0.0.1
+Date: 2022-04-11
+Author: Manuel Schneckenreither [aut, cre]
+Maintainer: Manuel Schneckenreither <manuel.schnecki@gmail.com>
+Authors@R:
+    person(given = "Manuel",
+           family = "Schneckenreither",
+           role = c("aut", "cre"),
+           email = "manuel.schnecki@gmail.com",
+           comment = c(ORCID = "0000-0002-4812-4665"))
+Imports:
+  sets
+Depends: R (>= 3.2)
+License: GPL (>=3)
+Encoding: UTF-8
+LazyData: true
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.1.2
+Suggests:
+    testthat (>= 3.0.0),
+    purrr
+Config/testthat/edition: 3
