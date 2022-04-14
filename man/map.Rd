@@ -6,6 +6,11 @@
 \usage{
 map(f, xs)
 }
+\arguments{
+\item{f}{function to apply}
+
+\item{xs}{list}
+}
 \description{
-map :: (a -> b) -> \link{a} -> \link{b}
+\code{map :: (a -> b) -> [a] -> [b]}
 }

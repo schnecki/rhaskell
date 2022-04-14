@@ -2,7 +2,9 @@
 
 #' Select first component.
 #'
-#' fst :: (a, b) -> a
+#' \code{fst :: (a, b) -> a}
+#'
+#' @param x tuple
 #'
 #' @export fst
 fst <- function(x) {
@@ -11,7 +13,9 @@ fst <- function(x) {
 
 #' Select second component.
 #'
-#' snd :: (a, b) -> b
+#' \code{snd :: (a, b) -> b}
+#'
+#' @param x tuple
 #'
 #' @export snd
 snd <- function(x) {
@@ -22,7 +26,9 @@ snd <- function(x) {
 #' Function to apply a tuple to a function. Makes a function taking a tuple instead of two
 #' parameters.
 #'
-#' uncurry :: (a -> b -> c) -> ((a, b) -> c)
+#' \code{uncurry :: (a -> b -> c) -> ((a, b) -> c)}
+#'
+#' @param f function taking 2 parameters
 #'
 #' @export uncurry
 uncurry <- function(f) {

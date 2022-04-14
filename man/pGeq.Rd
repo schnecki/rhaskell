@@ -6,7 +6,13 @@
 \usage{
 pGeq(x)
 }
+\arguments{
+\item{x}{parameter x in y >= x}
+}
 \description{
+\code{pGeq :: a -> b -> Bool}
+}
+\details{
 E.g. pGeq(3)(4) = TRUE
 E.g. pGeq(3)(2) = FALSE
 }

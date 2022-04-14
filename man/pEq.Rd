@@ -6,7 +6,13 @@
 \usage{
 pEq(x)
 }
+\arguments{
+\item{x}{first parameter value in x == y}
+}
 \description{
+\code{pEq :: a -> b -> Bool}
+}
+\details{
 E.g. pEq(3)(4) = FALSE
 E.g. pEq(3)(3) = TRUE
 }

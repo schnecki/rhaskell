@@ -4,8 +4,11 @@
 \alias{concat}
 \title{Concatenate a list of lists to a list.}
 \usage{
-concat(lists)
+concat(xxs)
+}
+\arguments{
+\item{xxs}{list of lists}
 }
 \description{
-concat :: [\link{a}] -> \link{a}
+Concatenate a list of lists to a list.
 }

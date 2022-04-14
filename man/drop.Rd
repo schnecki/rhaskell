@@ -6,6 +6,11 @@
 \usage{
 drop(nr, xs)
 }
+\arguments{
+\item{nr}{int}
+
+\item{xs}{list}
+}
 \description{
-drop :: Int -> \link{a} -> \link{a}
+\code{drop :: Int -> [a] -> [a]}
 }

@@ -7,6 +7,9 @@ parameters.}
 \usage{
 uncurry(f)
 }
+\arguments{
+\item{f}{function taking 2 parameters}
+}
 \description{
-uncurry :: (a -> b -> c) -> ((a, b) -> c)
+\code{uncurry :: (a -> b -> c) -> ((a, b) -> c)}
 }

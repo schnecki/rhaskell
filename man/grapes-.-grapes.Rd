@@ -2,10 +2,15 @@
 % Please edit documentation in R/Prelude.r
 \name{\%.\%}
 \alias{\%.\%}
-\title{Standard math. function composition: (f \%.\% g)(x) == f(g(x))}
+\title{Standard math. function composition: \code{(f \%.\% g)(x) == f(g(x))}}
 \usage{
 f \%.\% g
 }
+\arguments{
+\item{f}{function}
+
+\item{g}{function}
+}
 \description{
-Standard math. function composition: (f \%.\% g)(x) == f(g(x))
+\code{\%.\% :: (b -> c) -> (a -> b) -> (a -> c)}
 }

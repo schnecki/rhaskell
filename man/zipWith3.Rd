@@ -7,13 +7,15 @@
 zipWith3(f, xs, ys, zs)
 }
 \arguments{
-\item{f}{function. A funciton that should take two arguments, iterating over each element of both
+\item{f}{function. A function that should take two arguments, iterating over each element of both
 lists.}
 
-\item{xs}{list. One list to zip.}
+\item{xs}{list.}
 
-\item{ys}{list. Antoher list to zip.}
+\item{ys}{list.}
+
+\item{zs}{list.}
 }
 \description{
-Zip two lists together by a specific function.
+\code{concat :: [[a]] -> [a]}
 }

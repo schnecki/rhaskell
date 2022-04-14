@@ -6,6 +6,11 @@
 \usage{
 take(nr, xs)
 }
+\arguments{
+\item{nr}{int}
+
+\item{xs}{list}
+}
 \description{
-take :: Int -> \link{a} -> \link{a}
+\code{take :: Int -> [a] -> [a]}
 }

@@ -4,8 +4,11 @@
 \alias{head}
 \title{Returns the first element of a list. Unsafe! I.e. expects a non-empty list, or will throw an error.}
 \usage{
-head(x)
+head(xs)
+}
+\arguments{
+\item{xs}{list}
 }
 \description{
-head :: \link{a} -> a
+\code{head :: [a] -> a}
 }

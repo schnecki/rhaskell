@@ -14,7 +14,7 @@ Authors@R:
 Imports:
   sets
 Depends: R (>= 3.2)
-License: GPL (>=3)
+License: file LICENSE
 Encoding: UTF-8
 LazyData: true
 Roxygen: list(markdown = TRUE)

@@ -6,6 +6,9 @@
 \usage{
 flip(f)
 }
+\arguments{
+\item{f}{function}
+}
 \description{
-flip :: (a -> b -> c) -> (b -> a -> c)
+\code{flip :: (a -> b -> c) -> (b -> a -> c)}
 }

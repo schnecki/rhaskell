@@ -6,6 +6,9 @@
 \usage{
 pNeq(x)
 }
+\arguments{
+\item{x}{first parameter value}
+}
 \description{
-Partially applied not-equal function.
+\code{pNeq :: a -> b -> Bool}
 }

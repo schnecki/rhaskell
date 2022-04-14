@@ -6,6 +6,9 @@
 \usage{
 snd(x)
 }
+\arguments{
+\item{x}{tuple}
+}
 \description{
-snd :: (a, b) -> b
+\code{snd :: (a, b) -> b}
 }

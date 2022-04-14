@@ -6,7 +6,13 @@
 \usage{
 pLeq(x)
 }
+\arguments{
+\item{x}{parameter x in y <= x}
+}
 \description{
+\code{pLeq :: a -> b -> Bool}
+}
+\details{
 E.g. pLeq(3)(4) = FALSE
 E.g. pLeq(3)(2) = TRUE
 }

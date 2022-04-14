@@ -6,6 +6,9 @@
 \usage{
 void(f)
 }
+\arguments{
+\item{f}{function}
+}
 \description{
-Ignore the output of a function. Wrapper for @invisible@
+\code{void :: (a -> b) -> ()}
 }

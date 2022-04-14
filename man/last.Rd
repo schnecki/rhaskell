@@ -4,8 +4,11 @@
 \alias{last}
 \title{Returns the last element of a list. Unsafe! I.e. expects a non-empty list, or will throw an error.}
 \usage{
-last(x)
+last(xs)
+}
+\arguments{
+\item{xs}{list}
 }
 \description{
-last :: \link{a} -> a
+\code{last :: [a] -> a}
 }

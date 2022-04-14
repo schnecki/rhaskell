@@ -6,8 +6,13 @@
 \usage{
 subtract(x, y)
 }
+\arguments{
+\item{x}{Numeric value}
+
+\item{y}{Numeric value}
+}
 \description{
-subtract :: Num a => a -> a -> a
+\code{subtract :: Num a => a -> a -> a}
 }
 \details{
 subtract(3, 4) = -1

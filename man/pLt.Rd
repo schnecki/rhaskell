@@ -6,7 +6,13 @@
 \usage{
 pLt(x)
 }
+\arguments{
+\item{x}{parameter x in y < x}
+}
 \description{
+\code{pLt :: a -> b -> Bool}
+}
+\details{
 E.g. pLt(3)(4) = FALSE
 E.g. pLt(3)(2) = TRUE
 }

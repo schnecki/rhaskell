@@ -6,7 +6,13 @@
 \usage{
 pGt(x)
 }
+\arguments{
+\item{x}{parameter x in y > x}
+}
 \description{
+\code{pGt :: a -> b -> Bool}
+}
+\details{
 E.g. pGt(3)(4) = TRUE
 E.g. pGt(3)(2) = FALSE
 }

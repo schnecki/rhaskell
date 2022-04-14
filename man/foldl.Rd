@@ -6,6 +6,13 @@
 \usage{
 foldl(f, acc, xs)
 }
+\arguments{
+\item{f}{accumulator function}
+
+\item{acc}{accumulator}
+
+\item{xs}{list}
+}
 \description{
-foldl :: (b -> a -> b) -> b -> \link{a} -> b
+\code{foldl :: (b -> a -> b) -> b -> [a] -> b}
 }

@@ -7,15 +7,13 @@
 zipWith(f, xs, ys)
 }
 \arguments{
-\item{f}{function. A funciton that should take two arguments, iterating over each element of both
+\item{f}{function. A function that should take two arguments, iterating over each element of both
 lists.}
 
 \item{xs}{list. One list to zip.}
 
-\item{ys}{list. Antoher list to zip.
-
-zipWith :: (a -> b -> c) -> \link{a} -> \link{b} -> \link{c}}
+\item{ys}{list. Another list to zip.}
 }
 \description{
-Zip two lists together by a specific function.
+\code{zipWith :: (a -> b -> c) -> [a] -> [b] -> [c]}
 }

@@ -6,6 +6,9 @@
 \usage{
 unzip(xs)
 }
+\arguments{
+\item{xs}{list of tuples}
+}
 \description{
-unzip :: \link{(a, b)} -> (\link{a}, \link{b})
+\code{unzip :: [(a, b)] -> ([a], [b])}
 }

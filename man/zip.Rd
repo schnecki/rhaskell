@@ -6,6 +6,11 @@
 \usage{
 zip(xs, ys)
 }
+\arguments{
+\item{xs}{list. One list to zip.}
+
+\item{ys}{list. Another list to zip.}
+}
 \description{
-zip :: \link{a} -> \link{b} -> \link{(a, b)}
+\code{zip :: [a] -> [b] -> [(a, b)]}
 }

@@ -6,8 +6,11 @@
 \usage{
 pSubtract(x)
 }
+\arguments{
+\item{x}{Numeric value}
+}
 \description{
-subtract :: Num a => a -> (a -> a)
+\code{subtract :: Num a => a -> (a -> a)}
 }
 \details{
 subtract(4)(3) = -1

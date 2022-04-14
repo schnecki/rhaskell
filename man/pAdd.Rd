@@ -6,6 +6,9 @@
 \usage{
 pAdd(x)
 }
+\arguments{
+\item{x}{Numeric value}
+}
 \description{
-pAdd :: Num a => a -> (a -> a)
+\code{pAdd :: Num a => a -> (a -> a)}
 }

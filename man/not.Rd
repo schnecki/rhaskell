@@ -2,10 +2,13 @@
 % Please edit documentation in R/Prelude.r
 \name{not}
 \alias{not}
-\title{not :: Bool -> Bool}
+\title{Inverse for Boolean.}
 \usage{
 not(x)
 }
+\arguments{
+\item{x}{Bool}
+}
 \description{
-not :: Bool -> Bool
+\code{not :: Bool -> Bool}
 }

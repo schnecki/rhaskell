@@ -6,6 +6,9 @@
 \usage{
 fst(x)
 }
+\arguments{
+\item{x}{tuple}
+}
 \description{
-fst :: (a, b) -> a
+\code{fst :: (a, b) -> a}
 }

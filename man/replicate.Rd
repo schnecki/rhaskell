@@ -6,6 +6,11 @@
 \usage{
 replicate(nr, x)
 }
+\arguments{
+\item{nr}{int}
+
+\item{x}{any type}
+}
 \description{
-replicate :: Int -> a -> \link{a}
+\code{replicate :: Int -> a -> [a]}
 }

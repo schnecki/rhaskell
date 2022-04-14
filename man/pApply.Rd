@@ -6,6 +6,9 @@
 \usage{
 pApply(f)
 }
+\arguments{
+\item{f}{function}
+}
 \description{
-pApply :: (a -> (b -> c)) -> (a -> b -> c)
+\code{pApply :: (a -> (b -> c)) -> (a -> b -> c)}
 }

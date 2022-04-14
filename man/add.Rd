@@ -6,6 +6,11 @@
 \usage{
 add(x, y)
 }
+\arguments{
+\item{x}{Numeric value}
+
+\item{y}{Numeric value}
+}
 \description{
-add :: Num a => a -> a -> a
+\code{add :: Num a => a -> a -> a}
 }

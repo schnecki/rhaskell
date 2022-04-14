@@ -6,6 +6,9 @@
 \usage{
 is.Null(xs)
 }
+\arguments{
+\item{xs}{list}
+}
 \description{
-is.Null :: \link{a} -> Bool
+\code{is.Null :: [a] -> Bool}
 }

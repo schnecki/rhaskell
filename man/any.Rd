@@ -6,6 +6,11 @@
 \usage{
 any(pred, xs)
 }
+\arguments{
+\item{pred}{predicate function}
+
+\item{xs}{list}
+}
 \description{
-all :: (a -> Bool) -> \link{a} -> Bool
+\code{all :: (a -> Bool) -> [a] -> Bool}
 }

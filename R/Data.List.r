@@ -2,36 +2,47 @@
 
 #' Returns TRUE iff the parameter is an empty list
 #'
-#' is.Null :: [a] -> Bool
+#' \code{is.Null :: [a] -> Bool}
+#'
+#' @param xs list
 #'
 #' @export is.Null
 is.Null <- function(xs) return(length(xs) == 0)
 
 #' Returns the first element of a list. Unsafe! I.e. expects a non-empty list, or will throw an error.
 #'
-#' head :: [a] -> a
+#' \code{head :: [a] -> a}
+#'
+#' @param xs list
 #'
 #' @export head
-head <- function(x) x[[1]]
+head <- function(xs) xs[[1]]
 
 #' Returns the last element of a list. Unsafe! I.e. expects a non-empty list, or will throw an error.
 #'
-#' last :: [a] -> a
+#' \code{last :: [a] -> a}
+#'
+#' @param xs list
 #'
 #' @export all
-last <- function(x) x[[length(x)]]
+last <- function(xs) xs[[length(xs)]]
 
 #' Returns the tail of the list (all but first element).
 #'
-#' tail :: [a] -> [a]
+#' \code{tail :: [a] -> [a]}
+#'
+#' @param xs list
 #'
 #' @export tail
-tail <- function(x) x[-1]
+tail <- function(xs) xs[-1]
 
 
 #' Returns TRUE if any element matches the predicate, otherwise FALSE.
 #'
-#' all :: (a -> Bool) -> [a] -> Bool
+#' \code{all :: (a -> Bool) -> [a] -> Bool}
+#'
+#' @param pred predicate function
+#' @param xs list
 #'
 #' @export all
 any <- function(pred, xs) {
@@ -43,7 +54,10 @@ any <- function(pred, xs) {
 
 #' Returns TRUE iff all elements match the predicate, otherwise FALSE.
 #'
-#' all :: (a -> Bool) -> [a] -> Bool
+#' \code{all :: (a -> Bool) -> [a] -> Bool}
+#'
+#' @param pred predicate function
+#' @param xs list
 #'
 #' @export all
 all <- function(pred, xs) not(any(not %.% pred, xs))
@@ -51,7 +65,10 @@ all <- function(pred, xs) not(any(not %.% pred, xs))
 
 #' Take a number of elements from a list.
 #'
-#' take :: Int -> [a] -> [a]
+#' \code{take :: Int -> [a] -> [a]}
+#'
+#' @param nr int
+#' @param xs list
 #'
 #' @export take
 take <- function(nr, xs) {
@@ -67,7 +84,10 @@ take <- function(nr, xs) {
 
 #' Drop a number of elements from a list.
 #'
-#' drop :: Int -> [a] -> [a]
+#' \code{drop :: Int -> [a] -> [a]}
+#'
+#' @param nr int
+#' @param xs list
 #'
 #' @export drop
 drop <- function(nr, xs) {
@@ -85,7 +105,11 @@ drop <- function(nr, xs) {
 
 #' Fold over a list applying a function to each element and accumulating the result.
 #'
-#' foldl :: (b -> a -> b) -> b -> [a] -> b
+#' \code{foldl :: (b -> a -> b) -> b -> [a] -> b}
+#'
+#' @param f accumulator function
+#' @param acc accumulator
+#' @param xs list
 #'
 #' @export foldl
 foldl <- function(f, acc, xs) {
@@ -106,12 +130,13 @@ foldl <- function(f, acc, xs) {
 
 
 #' Zip two lists together by a specific function.
+#'
+#' \code{zipWith :: (a -> b -> c) -> [a] -> [b] -> [c]}
+#'
 #' @param f function. A function that should take two arguments, iterating over each element of both
 #'     lists.
 #' @param xs list. One list to zip.
 #' @param ys list. Another list to zip.
-#'
-#' zipWith :: (a -> b -> c) -> [a] -> [b] -> [c]
 #'
 #' @export zipWith
 zipWith <- function(f, xs, ys) {
@@ -142,7 +167,10 @@ zipWith <- function(f, xs, ys) {
 
 #' Zip two list into a list of tuples.
 #'
-#' zip :: [a] -> [b] -> [(a, b)]
+#' \code{zip :: [a] -> [b] -> [(a, b)]}
+#'
+#' @param xs list. One list to zip.
+#' @param ys list. Another list to zip.
 #'
 #' @export zip
 zip <- function(xs, ys) zipWith(sets::tuple, xs, ys)
@@ -150,25 +178,32 @@ zip <- function(xs, ys) zipWith(sets::tuple, xs, ys)
 
 #' Unzip a list of tuples into a tuple of lists.
 #'
-#' unzip :: [(a, b)] -> ([a], [b])
+#' \code{unzip :: [(a, b)] -> ([a], [b])}
+#'
+#' @param xs list of tuples
 #'
 #' @export unzip
 unzip <- function(xs) {
     fsts <- list()
     snds <- list()
     for (i in seq_len(length(xs))) {
-        fsts[[i]] <- fst(xs[[i]])
-        snds[[i]] <- snd(xs[[i]])
+        fsts[[i]] <- rhaskell::fst(xs[[i]])
+        snds[[i]] <- rhaskell::snd(xs[[i]])
     }
     return(sets::tuple(fsts, snds))
 }
 
 
 #' Zip two lists together by a specific function.
-#' @param f function. A funciton that should take two arguments, iterating over each element of both
+#'
+#' \code{concat :: [[a]] -> [a]}
+#'
+#' @param f function. A function that should take two arguments, iterating over each element of both
 #'     lists.
-#' @param xs list. One list to zip.
-#' @param ys list. Antoher list to zip.
+#' @param xs list.
+#' @param ys list.
+#' @param zs list.
+#'
 #' @export
 ## zipWith <- function(f, xs, ys) {
 ##     Map(f, xs, ys)
@@ -202,23 +237,26 @@ zipWith3 <- function(f, xs, ys, zs) {
 
 #' Concatenate a list of lists to a list.
 #'
-#' concat :: [[a]] -> [a]
+#' @param xxs list of lists
 #'
 #' @export concat
-concat <- function(lists) {
+concat <- function(xxs) {
     res <- list()
-    for (x in seq_len(length(lists))) {
-        res <- append(res, lists[[x]])
+    for (x in seq_len(length(xxs))) {
+        res <- append(res, xxs[[x]])
     }
-    ## for(y in 1:length(lists[[x]]))
-    ##     res <- append(res, lists[[x]])
+    ## for(y in 1:length(xxs[[x]]))
+    ##     res <- append(res, xxs[[x]])
     return(res)
 }
 
 
 #' Create a list of @nr@ elements of @x@.
 #'
-#' replicate :: Int -> a -> [a]
+#' \code{replicate :: Int -> a -> [a]}
+#'
+#' @param nr int
+#' @param x any type
 #'
 #' @export replicate
 replicate <- function(nr, x) {
@@ -239,7 +277,10 @@ replicate <- function(nr, x) {
 #' Split a list into two separate lists wrapped in a tuple. The first list will be until inclusive
 #' the provided index, the second list the rest.
 #'
-#' splitAt :: Int -> [a] -> ([a], [a])
+#' \code{splitAt :: Int -> [a] -> ([a], [a])}
+#'
+#' @param idx index
+#' @param xs list
 #'
 #' @export splitAt
 splitAt <- function(idx, xs) {
@@ -259,7 +300,10 @@ splitAt <- function(idx, xs) {
 
 #' Map with corrected parameter order.
 #'
-#' map :: (a -> b) -> [a] -> [b]
+#' \code{map :: (a -> b) -> [a] -> [b]}
+#'
+#' @param f function to apply
+#' @param xs list
 #'
 #' @export map
 map <- function(f, xs) {

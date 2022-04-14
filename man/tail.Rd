@@ -4,8 +4,11 @@
 \alias{tail}
 \title{Returns the tail of the list (all but first element).}
 \usage{
-tail(x)
+tail(xs)
+}
+\arguments{
+\item{xs}{list}
 }
 \description{
-tail :: \link{a} -> \link{a}
+\code{tail :: [a] -> [a]}
 }
