@@ -1,23 +1,23 @@
 
 
 test_that("is.Null", {
-  expect_true(is.Null(list()))
-  expect_false(is.Null(list(1)))
+    expect_true(is.Null(list()))
+    expect_false(is.Null(list(1)))
 })
 
 test_that("head", {
-  expect_equal(head(list(2, 3, 4)), 2)
-  expect_error(head(list()))
+    expect_equal(head(list(2, 3, 4)), 2)
+    expect_error(head(list()))
 })
 
 test_that("tail", {
-  expect_equal(tail(list(2, 3, 4)), list(3, 4))
-  expect_equal(tail(list()), list())
+    expect_equal(tail(list(2, 3, 4)), list(3, 4))
+    expect_equal(tail(list()), list())
 })
 
 test_that("last", {
-  expect_equal(last(list(2, 3, 4)), 4)
-  expect_error(last(list()))
+    expect_equal(last(list(2, 3, 4)), 4)
+    expect_error(last(list()))
 })
 
 
@@ -104,4 +104,12 @@ test_that("map", {
     expect_equal(map(pAdd(1), as.list(1:10)), as.list(2:11))
     expect_equal(map(pAdd(1), 1:10), as.list(2:11))
     expect_equal(map(pAdd(1), list()), list())
+})
+
+
+test_that("concatMap", {
+    sel <- function(x) if (x < 3) list(x) else list()
+    expect_equal(concatMap(sel, as.list(1:10)), as.list(1:2))
+    expect_equal(concatMap(sel, 1:10), as.list(1:2))
+    expect_equal(concatMap(sel, list()), list())
 })

@@ -3,7 +3,7 @@ Title: R-Haskell
 Description: R functions that implement some of Haskell\'s Prelude.
 Version: 0.0.1
 Date: 2022-04-11
-Author: Manuel Schneckenreither [aut, cre]
+Author: Manuel Schneckenreither
 Maintainer: Manuel Schneckenreither <manuel.schnecki@gmail.com>
 Authors@R:
     person(given = "Manuel",

@@ -313,3 +313,17 @@ map <- function(f, xs) {
     }
     return(res)
 }
+
+
+#' concatMap is `concat` `%.%` `map`. Here the list can be used as monoid, neglecting some values,
+#' while concat collects the accepted values.
+#'
+#' \code{concatMap :: (a -> [b]) -> [a] -> [b]}
+#'
+#' @param f function to apply
+#' @param xs list
+#'
+#' @export concatMap
+concatMap <- function(f, xs) {
+    return(rhaskell::concat(rhaskell::map(f, xs)))
+}
