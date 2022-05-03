@@ -24,6 +24,31 @@ void <- function(f) {
 }
 
 
+#' Is element of list.
+#'
+#' \code{\%elem\% :: a -> [a] -> Bool}
+#'
+#' @param a   element to check
+#' @param [a] list
+#'
+#' @export %elem%
+`%elem%` <- function(x, xs) {
+    return(x %in% xs)
+}
+
+#' Is not element of list.
+#'
+#' \code{\%notElem\% :: a -> [a] -> Bool}
+#'
+#' @param a   element to check
+#' @param [a] list
+#'
+#' @export %notElem%
+`%notElem%` <- function(x, xs) {
+    return(!(x %in% xs))
+}
+
+
 #' Inverse for Boolean.
 #'
 #' \code{not :: Bool -> Bool}

@@ -13,7 +13,9 @@ Authors@R:
            comment = c(ORCID = "0000-0002-4812-4665"))
 Imports:
   sets
-Depends: R (>= 3.2)
+Depends:
+    R (>= 3.2),
+    stringi
 License: file LICENSE
 Encoding: UTF-8
 LazyData: true
