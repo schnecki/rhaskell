@@ -66,6 +66,12 @@ test_that("zipWith", {
     expect_warning(zipWith(add, 1:10, 1:2))
 })
 
+test_that("zipWith3", {
+    add3 <- function(x, y, z) x + y + z
+    expect_equal(zipWith3(add3, 1:10, 1:10, 1:10), purrr::map(1:10, function(x) 3 * x))
+    expect_warning(zipWith3(add3, 1:10, 1:2, 1:10))
+})
+
 
 test_that("zip", {
     expect_equal(zip(1:10, 1:10), purrr::map(1:10, function(x) sets::tuple(x, x)))
@@ -104,6 +110,13 @@ test_that("map", {
     expect_equal(map(pAdd(1), as.list(1:10)), as.list(2:11))
     expect_equal(map(pAdd(1), 1:10), as.list(2:11))
     expect_equal(map(pAdd(1), list()), list())
+})
+
+test_that("filter", {
+    expect_equal(filter(pLt(1), as.list(1:10)), list())
+    expect_equal(filter(pLeq(1), as.list(1:10)), list(1))
+    expect_equal(filter(pLt(10), 1:10), as.list(1:9))
+    expect_equal(filter(pLeq(10), 1:10), as.list(1:10))
 })
 
 

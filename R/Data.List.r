@@ -144,14 +144,12 @@ zipWith <- function(f, xs, ys) {
     if (length(xs) == 0 || length(ys) == 0) {
         if (length(xs) != length(ys)) warning(txt)
         return(list())
-    } else if (length(xs) == 1 || length(ys) == 1) {
-        if (length(xs) != length(ys)) warning(txt)
-        return(list(f(xs[[1]], ys[[1]])))
     } else {
         if (length(xs) != length(ys)) warning(txt)
-        res <- list()
-        for (i in 1:min(length(xs), length(ys)))
-            res <- append(res, list(f(xs[[i]], ys[[i]])))
+        len <- min(length(xs), length(ys))
+        res <- base::vector("list", len)
+        for (i in 1:len)
+            res[[i]] <- f(xs[[i]], ys[[i]])
         return(res)
         ## ####################################################################################
         ## This would be the correct (state-less) implementation, but R does not like recusion:
@@ -184,8 +182,9 @@ zip <- function(xs, ys) zipWith(sets::tuple, xs, ys)
 #'
 #' @export unzip
 unzip <- function(xs) {
-    fsts <- list()
-    snds <- list()
+    len <- length(xs)
+    fsts <- base::vector("list", len)
+    snds <- base::vector("list", len)
     for (i in seq_len(length(xs))) {
         fsts[[i]] <- rhaskell::fst(xs[[i]])
         snds[[i]] <- rhaskell::snd(xs[[i]])
@@ -213,15 +212,12 @@ zipWith3 <- function(f, xs, ys, zs) {
     if (length(xs) == 0 || length(ys) == 0 || length(zs) == 0) {
         if (length(xs) != length(ys) || length(xs) != length(zs)) warning(txt)
         return(list())
-    } else if (length(xs) == 1 || length(ys) == 1 || length(zs) == 1) {
-        if (length(xs) != length(ys) || length(xs) != length(zs)) warning(txt)
-        return(list(f(xs[[1]], ys[[1]], zs[[1]])))
     } else {
         if (length(xs) != length(ys) || length(xs) != length(zs)) warning(txt)
-        len <- min(length(xs), length(ys))
-        res <- vector("list", len)
+        len <- min(length(xs), length(ys), min(length(zs)))
+        res <- base::vector("list", len)
         for (i in 1:len)
-            res[[i]] <- f(xs[[i]], ys[[i]])
+            res[[i]] <- f(xs[[i]], ys[[i]], zs[[i]])
         return(res)
         ## ####################################################################################
         ## This would be the correct (state-less) implementation, but R does not like recusion:
@@ -242,9 +238,13 @@ zipWith3 <- function(f, xs, ys, zs) {
 #'
 #' @export concat
 concat <- function(xxs) {
-    res <- list()
-    for (x in seq_len(length(xxs))) {
-        res <- append(res, xxs[[x]])
+    res <- base::vector("list", sum(unlist(rhaskell::map(length, xxs))))
+    i <- 1
+    for (j in seq_len(length(xxs))) {
+        for (k in seq_len(length(xxs[[j]]))) {
+            res[[i]] <- xxs[[j]][[k]]
+            i <- i + 1
+        }
     }
     ## for(y in 1:length(xxs[[x]]))
     ##     res <- append(res, xxs[[x]])
@@ -266,9 +266,9 @@ replicate <- function(nr, x) {
     } else if (nr == 1) {
         return(list(x))
     } else {
-        res <- list()
+        res <- base::vector("list", nr)
         for (i in seq_len(nr))
-            res <- append(res, list(x))
+            res[[i]] <- x
         return(res)
         ## return(append(list(x), replicate(nr - 1, x)))
     }
@@ -289,12 +289,10 @@ splitAt <- function(idx, xs) {
         return(sets::tuple(list(), list()))
     if (idx < 1)
         return(sets::tuple(list(), as.list(xs)))
-    if (idx > length(xs))
+    if (idx >= length(xs))
         return(sets::tuple(as.list(xs), list()))
     left <- xs[1:idx]
-    right <- list()
-    if (idx + 1 < length(xs))
-        right <- xs[(idx + 1):length(xs)]
+    right <- xs[(idx + 1):length(xs)]
     return(sets::tuple(left, right))
 }
 
@@ -308,9 +306,9 @@ splitAt <- function(idx, xs) {
 #'
 #' @export map
 map <- function(f, xs) {
-    res <- list()
+    res <- base::vector("list", length(xs))
     for (i in seq_len(length(xs))) {
-        res <- append(res, f(xs[[i]]))
+        res[[i]] <- f(xs[[i]])
     }
     return(res)
 }
@@ -339,13 +337,14 @@ concatMap <- function(f, xs) {
 #'
 #' @export filter
 filter <- function(f, xs) {
-    res <- list()
-    resLen <- 0
+    res <- base::vector("list", length(xs))
+    resLen <- 1
     for (i in seq_len(length(xs))) {
         if (f(xs[[i]])) {
-            resLen <- resLen + 1
             res[[resLen]] <- xs[[i]]
+            resLen <- resLen + 1
         }
     }
-    return(res)
+    if (resLen == 1) return(list())
+    return(res[1 : (resLen - 1)])
 }
