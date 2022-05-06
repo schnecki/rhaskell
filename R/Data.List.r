@@ -218,9 +218,10 @@ zipWith3 <- function(f, xs, ys, zs) {
         return(list(f(xs[[1]], ys[[1]], zs[[1]])))
     } else {
         if (length(xs) != length(ys) || length(xs) != length(zs)) warning(txt)
-        res <- list()
-        for (i in 1:min(length(xs), length(ys), length(zs)))
-            res <- append(res, list(f(xs[[i]], ys[[i]], zs[[i]])))
+        len <- min(length(xs), length(ys))
+        res <- vector("list", len)
+        for (i in 1:len)
+            res[[i]] <- f(xs[[i]], ys[[i]])
         return(res)
         ## ####################################################################################
         ## This would be the correct (state-less) implementation, but R does not like recusion:
