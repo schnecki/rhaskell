@@ -44,7 +44,7 @@ tail <- function(xs) xs[-1]
 #' @param pred predicate function
 #' @param xs list
 #'
-#' @export all
+#' @export any
 any <- function(pred, xs) {
     for (i in seq_len(length(xs)))
         if (pred(xs[[i]])) return(TRUE)
@@ -327,4 +327,25 @@ map <- function(f, xs) {
 #' @export concatMap
 concatMap <- function(f, xs) {
     return(rhaskell::concat(rhaskell::map(f, xs)))
+}
+
+
+#' Filters a list by predicate function.
+#'
+#' \code{filter :: (a -> Bool) -> [a] -> [a]}
+#'
+#' @param f predicate function
+#' @param xs list
+#'
+#' @export filter
+filter <- function(f, xs) {
+    res <- list()
+    resLen <- 0
+    for (i in seq_len(length(xs))) {
+        if (f(xs[[i]])) {
+            resLen <- resLen + 1
+            res[[resLen]] <- xs[[i]]
+        }
+    }
+    return(res)
 }
