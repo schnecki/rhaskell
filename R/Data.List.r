@@ -2,12 +2,12 @@
 
 #' Returns TRUE iff the parameter is an empty list
 #'
-#' \code{is.Null :: [a] -> Bool}
+#' \code{null :: [a] -> Bool}
 #'
 #' @param xs list
 #'
-#' @export is.Null
-is.Null <- function(xs) return(length(xs) == 0)
+#' @export null
+null <- function(xs) return(length(xs) == 0)
 
 #' Returns the first element of a list. Unsafe! I.e. expects a non-empty list, or will throw an error.
 #'
@@ -297,7 +297,8 @@ splitAt <- function(idx, xs) {
 }
 
 
-#' Map with corrected parameter order.
+#' Map with corrected parameter order. You should only use pure functions! Use @mapM_@ in case of
+#' impure functions.
 #'
 #' \code{map :: (a -> b) -> [a] -> [b]}
 #'
@@ -312,6 +313,17 @@ map <- function(f, xs) {
     }
     return(res)
 }
+
+#' This is @map@, but with indication that IO is happening. I.e. the program state can change and a
+#' reader must have a closer look what the function does.
+#'
+#' \code{mapM_ :: (a -> IO b) -> [a] -> IO ()}
+#'
+#' @param f function to apply
+#' @param xs list
+#'
+#' @export mapM_
+mapM_ <- function(f, xs) void(map(f, xs))
 
 
 #' concatMap is `concat` `%.%` `map`. Here the list can be used as monoid, neglecting some values,

@@ -2,7 +2,8 @@
 % Please edit documentation in R/Data.List.r
 \name{map}
 \alias{map}
-\title{Map with corrected parameter order.}
+\title{Map with corrected parameter order. You should only use pure functions! Use @mapM_@ in case of
+impure functions.}
 \usage{
 map(f, xs)
 }

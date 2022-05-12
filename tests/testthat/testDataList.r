@@ -1,8 +1,8 @@
 
 
-test_that("is.Null", {
-    expect_true(is.Null(list()))
-    expect_false(is.Null(list(1)))
+test_that("null", {
+    expect_true(null(list()))
+    expect_false(null(list(1)))
 })
 
 test_that("head", {
