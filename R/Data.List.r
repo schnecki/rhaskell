@@ -348,3 +348,35 @@ filter <- function(f, xs) {
     if (resLen == 1) return(list())
     return(res[1 : (resLen - 1)])
 }
+
+
+#' O(n). The intersperse function takes an element and a list and `intersperses' that element
+#' between the elements of the list.
+#'
+#' \code{filter :: a -> [a] -> [a]}
+#'
+#' @param a  element
+#' @param xs list of elements
+#'
+#' @export intersperse
+intersperse <- function(x, xs) {
+    res <- base::vector("list", max(0, 2 * length(xs) - 1))
+    for (i in seq_len(length(xs))) {
+        res[[2 * i - 1]] <- xs[[i]]
+        if (i != length(xs))
+            res[[2 * i]] <- x
+    }
+    return(res)
+}
+
+
+#' 'intercalate' @xs xss@ is equivalent to @('concat' ('intersperse' xs xss))@. It inserts the list
+#' @xs@ in between the lists in @xss@ and concatenates the result.
+#'
+#' \code{filter :: a -> [a] -> [a]}
+#'
+#' @param xs  element
+#' @param xss list of elements
+#'
+#' @export intercalate
+intercalate <- function(xs, xss) concat(intersperse(xs, xss))

@@ -119,10 +119,20 @@ test_that("filter", {
     expect_equal(filter(pLeq(10), 1:10), as.list(1:10))
 })
 
-
 test_that("concatMap", {
     sel <- function(x) if (x < 3) list(x) else list()
     expect_equal(concatMap(sel, as.list(1:10)), as.list(1:2))
     expect_equal(concatMap(sel, 1:10), as.list(1:2))
     expect_equal(concatMap(sel, list()), list())
+})
+
+test_that("intersperse", {
+    expect_equal(intersperse(0, as.list(1:3)), as.list(c(1, 0, 2, 0, 3)))
+    expect_equal(intersperse(0, list()), list())
+})
+
+
+test_that("intercalate", {
+    expect_equal(intercalate(list(0), map(list, as.list(1:3))), as.list(c(1, 0, 2, 0, 3)))
+    expect_equal(intercalate(list(0), list()), list())
 })
