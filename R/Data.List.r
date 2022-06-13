@@ -317,6 +317,18 @@ map <- function(f, xs) {
 #' This is @map@, but with indication that IO is happening. I.e. the program state can change and a
 #' reader must have a closer look what the function does.
 #'
+#' \code{mapM :: (a -> IO b) -> [a] -> IO [b]}
+#'
+#' @param f function to apply
+#' @param xs list
+#'
+#' @export mapM
+mapM <- function(f, xs) map(f, xs)
+
+
+#' This is @map@, but with indication that IO is happening. I.e. the program state can change and a
+#' reader must have a closer look what the function does.
+#'
 #' \code{mapM_ :: (a -> IO b) -> [a] -> IO ()}
 #'
 #' @param f function to apply
@@ -392,3 +404,31 @@ intersperse <- function(x, xs) {
 #'
 #' @export intercalate
 intercalate <- function(xs, xss) concat(intersperse(xs, xss))
+
+
+#' @delete x xs@ removes the first occurance of x in list xs.
+#'
+#' delete :: Eq a => a -> [a] -> [a]
+#'
+#' @param x element
+#' @param xs list of elements
+#'
+#' @export delete
+delete <- function(x, xs) {
+    if (length(xs) < 1) return(list())
+    res <- base::vector("list", length(xs) - 1)
+    resLen <- 1
+    deleted <- FALSE
+    for (i in seq_len(length(xs))) {
+        if (!deleted && base::identical(x, xs[[i]])) {
+            deleted <- TRUE
+        } else if (resLen <= length(res)) {
+            res[[resLen]] <- xs[[i]]
+            resLen <- resLen + 1
+        }
+    }
+    if (deleted)
+        return(res)
+    else
+        return(xs)
+}

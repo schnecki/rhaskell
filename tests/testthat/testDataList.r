@@ -136,3 +136,13 @@ test_that("intercalate", {
     expect_equal(intercalate(list(0), map(list, as.list(1:3))), as.list(c(1, 0, 2, 0, 3)))
     expect_equal(intercalate(list(0), list()), list())
 })
+
+
+test_that("delete", {
+    expect_equal(delete(3, list()), list())
+    expect_equal(delete(3, as.list(c(3))), list())
+    expect_equal(delete(5, as.list(c(3))), list(c(3)))
+    expect_equal(delete(3, as.list(c(1, 2, 3, 4))), as.list(c(1, 2, 4)))
+    expect_equal(delete(0, as.list(c(1, 2, 3, 4))), as.list(c(1, 2, 3, 4)))
+    expect_equal(delete(3, as.list(c(1, 2, 3, 3, 4))), as.list(c(1, 2, 3, 4)))
+})

@@ -23,6 +23,18 @@ void <- function(f) {
     return(function(...) f(g(...)))
 }
 
+#' Prefix version of \%comp\%.
+#'
+#' \code{comp :: (b -> c) -> (a -> b) -> (a -> c)}
+#'
+#' @param f function
+#' @param g function
+#'
+#' @export comp
+comp <- function(f, g) {
+    return(function(...) f(g(...)))
+}
+
 
 #' Is element of list.
 #'
