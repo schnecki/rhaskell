@@ -17,6 +17,32 @@ pEq <- function(x) {
 }
 
 
+#' Partially applied @identical@, returns a function, where the first parameter is set.
+#'
+#' \code{pIdentical :: a -> b -> Bool}
+#'
+#' @param x first parameter value in identical(x, y)
+#'
+#' @export pIdentical
+pIdentical <- function(x) {
+    return(function(y) {
+        return(base::identical(x, y))
+    })
+}
+
+
+#' Equality.
+#'
+#' \code{eq :: a -> b -> Bool}
+#'
+#'
+#' @param x first parameter value in x == y
+#' @param y second parameter value in x == y
+#'
+#' @export eq
+eq <- function(x, y) return(x == y)
+
+
 #' Partially applied not-equal function.
 #'
 #' \code{pNeq :: a -> b -> Bool}
@@ -24,9 +50,30 @@ pEq <- function(x) {
 #' @param x first parameter value
 #'
 #' @export pNeq
-pNeq <- function(x) {
-    return(rhaskell::not %.% rhaskell::pEq(x))
+pNeq <- function(x) return(rhaskell::comp(rhaskell::not, rhaskell::pEq(x)))
+
+#' Partially applied @not %.% identical@, returns a function, where the first parameter is set.
+#'
+#' \code{pIdentical :: a -> b -> Bool}
+#'
+#' @param x first parameter value in @!identical(x, y)@
+#'
+#' @export pNIdentical
+pNIdentical <- function(x) {
+    return(function(y) {
+        return(!base::identical(x, y))
+    })
 }
+
+#' Not-equal function.
+#'
+#' \code{neq :: a -> b -> Bool}
+#'
+#' @param x first parameter value
+#' @param y second parameter value
+#'
+#' @export neq
+neq <- function(x, y) return(x != y)
 
 
 #' Partially applied greater or equal, returns a function with >= x, where x is the first parameter.
@@ -46,6 +93,17 @@ pGeq <- function(x) {
 }
 
 
+#' Greater or equal.
+#'
+#' \code{geq :: a -> b -> Bool}
+#'
+#' @param x parameter x in y >= x
+#' @param y parameter x in y >= x
+#'
+#' @export geq
+geq <- function(x, y) return(y >= x)
+
+
 #' Partially applied less or equal, returns a function with <= x, where x is the first parameter.
 #'
 #' \code{pLeq :: a -> b -> Bool}
@@ -61,6 +119,16 @@ pLeq <- function(x) {
         return(y <= x)
     })
 }
+
+#' Less or equal.
+#'
+#' \code{leq :: a -> b -> Bool}
+#'
+#' @param x parameter x in x <= y
+#' @param y parameter y in x <= y
+#'
+#' @export leq
+leq <- function(x, y) return(x <= y)
 
 
 #' Partially applied greater, returns a function with > x, where x is the first parameter.
@@ -80,6 +148,17 @@ pGt <- function(x) {
 }
 
 
+#' Greater than.
+#'
+#' \code{gt :: a -> b -> Bool}
+#'
+#' @param x parameter x in x > y
+#' @param y parameter x in x > y
+#'
+#' @export gt
+gt <- function(x, y) return(x > y)
+
+
 #' Partially applied less, returns a function with < x, where x is the first parameter.
 #'
 #' \code{pLt :: a -> b -> Bool}
@@ -95,3 +174,14 @@ pLt <- function(x) {
         return(y < x)
     })
 }
+
+
+#' Less than.
+#'
+#' \code{lt :: a -> b -> Bool}
+#'
+#' @param x parameter x in x < y
+#' @param y parameter x in x < y
+#'
+#' @export lt
+lt <- function(x, y) return(x < y)

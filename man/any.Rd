@@ -4,7 +4,7 @@
 \alias{any}
 \title{Returns TRUE if any element matches the predicate, otherwise FALSE.}
 \usage{
-any(pred, xs)
+any(pred, xs, skipNAs = TRUE)
 }
 \arguments{
 \item{pred}{predicate function}

@@ -4,7 +4,7 @@
 \alias{all}
 \title{Returns TRUE iff all elements match the predicate, otherwise FALSE.}
 \usage{
-all(pred, xs)
+all(pred, xs, skipNAs = TRUE)
 }
 \arguments{
 \item{pred}{predicate function}

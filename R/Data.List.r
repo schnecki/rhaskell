@@ -45,9 +45,11 @@ tail <- function(xs) xs[-1]
 #' @param xs list
 #'
 #' @export any
-any <- function(pred, xs) {
-    for (i in seq_len(length(xs)))
+any <- function(pred, xs, skipNAs = TRUE) {
+    for (i in seq_len(length(xs))) {
+        if (base::is.atomic(xs[[i]]) && skipNAs && base::is.na(xs[[i]])) next
         if (pred(xs[[i]])) return(TRUE)
+    }
     return(FALSE)
 }
 
@@ -60,7 +62,7 @@ any <- function(pred, xs) {
 #' @param xs list
 #'
 #' @export all
-all <- function(pred, xs) not(any(not %.% pred, xs))
+all <- function(pred, xs, skipNAs = TRUE) not(any(not %.% pred, xs))
 
 
 #' Take a number of elements from a list.
