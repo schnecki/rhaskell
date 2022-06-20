@@ -1,6 +1,12 @@
 
 
 test_that("null", {
+    expect_equal(cons(1, list()), list(1))
+    expect_equal(cons(1, list(2)), list(1, 2))
+})
+
+
+test_that("null", {
     expect_true(null(list()))
     expect_false(null(list(1)))
 })

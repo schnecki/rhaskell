@@ -1,4 +1,14 @@
 
+#' Returns TRUE iff the parameter is an empty list
+#'
+#' \code{cons :: a -> [a] -> [a]}
+#'
+#' @param x element
+#' @param xs list
+#'
+#' @export cons
+cons <- function(x, xs) return(base::append(list(x), xs))
+
 
 #' Returns TRUE iff the parameter is an empty list
 #'
@@ -47,7 +57,7 @@ tail <- function(xs) xs[-1]
 #' @export any
 any <- function(pred, xs, skipNAs = TRUE) {
     for (i in seq_len(length(xs))) {
-        if (base::is.atomic(xs[[i]]) && skipNAs && base::is.na(xs[[i]])) next
+        if (skipNAs && base::is.na(pred(xs[[i]]))) next
         if (pred(xs[[i]])) return(TRUE)
     }
     return(FALSE)
@@ -408,7 +418,7 @@ intersperse <- function(x, xs) {
 intercalate <- function(xs, xss) concat(intersperse(xs, xss))
 
 
-#' @delete x xs@ removes the first occurance of x in list xs.
+#' @delete x xs@ removes the first occurance of `x` in list `xs`.
 #'
 #' delete :: Eq a => a -> [a] -> [a]
 #'
