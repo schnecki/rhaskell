@@ -3,6 +3,7 @@
 export("%.%")
 export("%elem%")
 export("%notElem%")
+export("%seq%")
 export(add)
 export(all)
 export(any)

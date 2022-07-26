@@ -73,6 +73,20 @@ unlines <- function(xs) {
 }
 
 
+#' Sequencing of functions
+#'
+#' \code{\%seq\% :: a -> b -> b}
+#'
+#' @param f Function
+#' @param g Function
+#'
+#' @export %seq%
+`%seq%` <- function(f, g) {
+    x <- f
+    return(g)
+}
+
+
 #' Inverse for Boolean.
 #'
 #' \code{not :: Bool -> Bool}

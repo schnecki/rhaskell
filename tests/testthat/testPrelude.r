@@ -22,3 +22,7 @@ test_that("unlines", {
   expect_equal(unlines(list()), "")
   expect_equal(unlines(list("a", "b", "c")), "abc")
 })
+
+test_that("seq", {
+  expect_equal((1 + 1) %seq% (2 + 3), 5)
+})
