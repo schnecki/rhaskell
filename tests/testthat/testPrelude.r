@@ -16,3 +16,9 @@ test_that("pEq", {
   expect_false(pEq(3)(4))
   expect_true(pEq(3)(3))
 })
+
+
+test_that("unlines", {
+  expect_equal(unlines(list()), "")
+  expect_equal(unlines(list("a", "b", "c")), "abc")
+})

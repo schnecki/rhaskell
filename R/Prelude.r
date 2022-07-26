@@ -61,6 +61,18 @@ comp <- function(f, g) {
 }
 
 
+#' Collapse a list of string
+#'
+#' \code{\%unlines\% :: [String] -> String}
+#'
+#' @param [a] list of strings
+#'
+#' @export unlines
+unlines <- function(xs) {
+    return(paste(c(xs), collapse = ""))
+}
+
+
 #' Inverse for Boolean.
 #'
 #' \code{not :: Bool -> Bool}

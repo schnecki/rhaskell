@@ -17,7 +17,7 @@ cons <- function(x, xs) return(base::append(list(x), xs))
 #' @param xs list
 #'
 #' @export null
-null <- function(xs) return(length(xs) == 0)
+null <- function(xs) return(base::length(xs) == 0)
 
 #' Returns the first element of a list. Unsafe! I.e. expects a non-empty list, or will throw an error.
 #'
@@ -35,7 +35,7 @@ head <- function(xs) xs[[1]]
 #' @param xs list
 #'
 #' @export all
-last <- function(xs) xs[[length(xs)]]
+last <- function(xs) xs[[base::length(xs)]]
 
 #' Returns the tail of the list (all but first element).
 #'
@@ -56,7 +56,7 @@ tail <- function(xs) xs[-1]
 #'
 #' @export any
 any <- function(pred, xs, skipNAs = TRUE) {
-    for (i in seq_len(length(xs))) {
+    for (i in base::seq_len(base::length(xs))) {
         if (skipNAs && base::is.na(pred(xs[[i]]))) next
         if (pred(xs[[i]])) return(TRUE)
     }
@@ -89,7 +89,7 @@ take <- function(nr, xs) {
     } else if (nr == 0) {
         return(list())
     } else {
-        return(as.list(xs[c(1:min(nr, length(xs)))]))
+        return(as.list(xs[c(1:min(nr, base::length(xs)))]))
     }
 }
 
@@ -105,12 +105,12 @@ take <- function(nr, xs) {
 drop <- function(nr, xs) {
     if (nr < 0) {
         stop("Cannot drop negative number of elements in a list.")
-    } else if (nr >= length(xs)) {
+    } else if (nr >= base::length(xs)) {
         return(list())
     } else if (nr == 0) {
         return(as.list(xs))
     } else {
-        return(as.list(xs[-c(0:min(nr, length(xs)))]))
+        return(as.list(xs[-c(0:min(nr, base::length(xs)))]))
     }
 }
 
@@ -125,10 +125,10 @@ drop <- function(nr, xs) {
 #'
 #' @export foldl
 foldl <- function(f, acc, xs) {
-    if (length(xs) == 0) {
+    if (base::length(xs) == 0) {
         return(acc)
     } else {
-        for (i in seq_len(length(xs))) {
+        for (i in base::seq_len(base::length(xs))) {
             acc <- f(acc, xs[[i]])
         }
         return(acc)
@@ -153,12 +153,12 @@ foldl <- function(f, acc, xs) {
 #' @export zipWith
 zipWith <- function(f, xs, ys) {
     txt <- "In zipWith(f, xs, ys) the length of lists xs and ys are different. Truncating the longer list."
-    if (length(xs) == 0 || length(ys) == 0) {
-        if (length(xs) != length(ys)) warning(txt)
+    if (base::length(xs) == 0 || base::length(ys) == 0) {
+        if (base::length(xs) != base::length(ys)) warning(txt)
         return(list())
     } else {
-        if (length(xs) != length(ys)) warning(txt)
-        len <- min(length(xs), length(ys))
+        if (base::length(xs) != base::length(ys)) warning(txt)
+        len <- min(base::length(xs), base::length(ys))
         res <- base::vector("list", len)
         for (i in 1:len)
             res[[i]] <- f(xs[[i]], ys[[i]])
@@ -194,10 +194,10 @@ zip <- function(xs, ys) zipWith(sets::tuple, xs, ys)
 #'
 #' @export unzip
 unzip <- function(xs) {
-    len <- length(xs)
+    len <- base::length(xs)
     fsts <- base::vector("list", len)
     snds <- base::vector("list", len)
-    for (i in seq_len(length(xs))) {
+    for (i in base::seq_len(base::length(xs))) {
         fsts[[i]] <- rhaskell::fst(xs[[i]])
         snds[[i]] <- rhaskell::snd(xs[[i]])
     }
@@ -221,12 +221,12 @@ unzip <- function(xs) {
 ## }
 zipWith3 <- function(f, xs, ys, zs) {
     txt <- "In zipWith3(f, xs, ys, zs) the length of lists xs, ys and zs are different. Truncating the longer list."
-    if (length(xs) == 0 || length(ys) == 0 || length(zs) == 0) {
-        if (length(xs) != length(ys) || length(xs) != length(zs)) warning(txt)
+    if (base::length(xs) == 0 || base::length(ys) == 0 || base::length(zs) == 0) {
+        if (base::length(xs) != base::length(ys) || base::length(xs) != base::length(zs)) warning(txt)
         return(list())
     } else {
-        if (length(xs) != length(ys) || length(xs) != length(zs)) warning(txt)
-        len <- min(length(xs), length(ys), min(length(zs)))
+        if (base::length(xs) != base::length(ys) || base::length(xs) != base::length(zs)) warning(txt)
+        len <- min(base::length(xs), base::length(ys), min(base::length(zs)))
         res <- base::vector("list", len)
         for (i in 1:len)
             res[[i]] <- f(xs[[i]], ys[[i]], zs[[i]])
@@ -250,10 +250,10 @@ zipWith3 <- function(f, xs, ys, zs) {
 #'
 #' @export concat
 concat <- function(xxs) {
-    res <- base::vector("list", sum(unlist(rhaskell::map(length, xxs))))
+    res <- base::vector("list", base::sum(base::unlist(rhaskell::map(base::length, xxs))))
     i <- 1
-    for (j in seq_len(length(xxs))) {
-        for (k in seq_len(length(xxs[[j]]))) {
+    for (j in base::seq_len(base::length(xxs))) {
+        for (k in base::seq_len(base::length(xxs[[j]]))) {
             res[[i]] <- xxs[[j]][[k]]
             i <- i + 1
         }
@@ -279,7 +279,7 @@ replicate <- function(nr, x) {
         return(list(x))
     } else {
         res <- base::vector("list", nr)
-        for (i in seq_len(nr))
+        for (i in base::seq_len(nr))
             res[[i]] <- x
         return(res)
         ## return(append(list(x), replicate(nr - 1, x)))
@@ -297,16 +297,25 @@ replicate <- function(nr, x) {
 #'
 #' @export splitAt
 splitAt <- function(idx, xs) {
-    if (length(xs) == 0)
+    if (base::length(xs) == 0)
         return(sets::tuple(list(), list()))
     if (idx < 1)
         return(sets::tuple(list(), as.list(xs)))
-    if (idx >= length(xs))
+    if (idx >= base::length(xs))
         return(sets::tuple(as.list(xs), list()))
     left <- xs[1:idx]
-    right <- xs[(idx + 1):length(xs)]
+    right <- xs[(idx + 1) : base::length(xs)]
     return(sets::tuple(left, right))
 }
+
+#' Reverse function. Uses `base::rev` under the hood.
+#'
+#' \code{reverse :: [a] -> [a]}
+#'
+#' @param xs list
+#'
+#' @export reverse
+reverse <- function(xs) return(base::rev(xs))
 
 
 #' Map with corrected parameter order. You should only use pure functions! Use @mapM_@ in case of
@@ -319,8 +328,8 @@ splitAt <- function(idx, xs) {
 #'
 #' @export map
 map <- function(f, xs) {
-    res <- base::vector("list", length(xs))
-    for (i in seq_len(length(xs))) {
+    res <- base::vector("list", base::length(xs))
+    for (i in base::seq_len(base::length(xs))) {
         res[[i]] <- f(xs[[i]])
     }
     return(res)
@@ -373,9 +382,9 @@ concatMap <- function(f, xs) {
 #'
 #' @export filter
 filter <- function(f, xs) {
-    res <- base::vector("list", length(xs))
+    res <- base::vector("list", base::length(xs))
     resLen <- 1
-    for (i in seq_len(length(xs))) {
+    for (i in base::seq_len(base::length(xs))) {
         if (f(xs[[i]])) {
             res[[resLen]] <- xs[[i]]
             resLen <- resLen + 1
@@ -396,10 +405,10 @@ filter <- function(f, xs) {
 #'
 #' @export intersperse
 intersperse <- function(x, xs) {
-    res <- base::vector("list", max(0, 2 * length(xs) - 1))
-    for (i in seq_len(length(xs))) {
+    res <- base::vector("list", max(0, 2 * base::length(xs) - 1))
+    for (i in base::seq_len(base::length(xs))) {
         res[[2 * i - 1]] <- xs[[i]]
-        if (i != length(xs))
+        if (i != base::length(xs))
             res[[2 * i]] <- x
     }
     return(res)
@@ -409,7 +418,7 @@ intersperse <- function(x, xs) {
 #' 'intercalate' @xs xss@ is equivalent to @('concat' ('intersperse' xs xss))@. It inserts the list
 #' @xs@ in between the lists in @xss@ and concatenates the result.
 #'
-#' \code{filter :: a -> [a] -> [a]}
+#' \code{intercalate :: [a] -> [[a]] -> [a]}
 #'
 #' @param xs  element
 #' @param xss list of elements
@@ -427,14 +436,14 @@ intercalate <- function(xs, xss) concat(intersperse(xs, xss))
 #'
 #' @export delete
 delete <- function(x, xs) {
-    if (length(xs) < 1) return(list())
-    res <- base::vector("list", length(xs) - 1)
+    if (base::length(xs) < 1) return(list())
+    res <- base::vector("list", base::length(xs) - 1)
     resLen <- 1
     deleted <- FALSE
-    for (i in seq_len(length(xs))) {
+    for (i in base::seq_len(base::length(xs))) {
         if (!deleted && base::identical(x, xs[[i]])) {
             deleted <- TRUE
-        } else if (resLen <= length(res)) {
+        } else if (resLen <= base::length(res)) {
             res[[resLen]] <- xs[[i]]
             resLen <- resLen + 1
         }
