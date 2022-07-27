@@ -35,6 +35,35 @@ comp <- function(f, g) {
     return(function(...) f(g(...)))
 }
 
+#' Combine all logical values of a list with a conjuntion. Returns @TRUE@ on an empty list.
+#'
+#' \code{and :: [Bool] -> Bool}
+#'
+#' @param xs list of Bools
+#'
+#' @export and
+and <- function(xs) {
+    for (x in xs) {
+        if (!x) return(FALSE)
+    }
+    return(TRUE)
+}
+
+
+#' Combine all logical values of a list with a disjuntion. Return @FALSE@ on an empty list.
+#'
+#' \code{or :: [Bool] -> Bool}
+#'
+#' @param xs list of Bools
+#'
+#' @export or
+or <- function(xs) {
+    for (x in xs) {
+        if (x) return(TRUE)
+    }
+    return(FALSE)
+}
+
 
 #' Is element of list.
 #'

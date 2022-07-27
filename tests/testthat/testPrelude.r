@@ -26,3 +26,16 @@ test_that("unlines", {
 test_that("seq", {
   expect_equal((1 + 1) %seq% (2 + 3), 5)
 })
+
+
+test_that("and", {
+  expect_equal(and(list()), TRUE)
+  expect_equal(and(list(TRUE)), TRUE)
+  expect_equal(and(list(TRUE, FALSE)), FALSE)
+})
+
+test_that("or", {
+  expect_equal(or(list()), FALSE)
+  expect_equal(or(list(FALSE)), FALSE)
+  expect_equal(or(list(FALSE, TRUE)), TRUE)
+})
