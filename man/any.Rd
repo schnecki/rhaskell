@@ -12,5 +12,5 @@ any(pred, xs, skipNAs = TRUE)
 \item{xs}{list}
 }
 \description{
-\code{all :: (a -> Bool) -> [a] -> Bool}
+\code{any :: (a -> Bool) -> [a] -> Bool}
 }

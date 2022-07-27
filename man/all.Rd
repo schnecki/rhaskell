@@ -2,7 +2,8 @@
 % Please edit documentation in R/Data.List.r
 \name{all}
 \alias{all}
-\title{Returns TRUE iff all elements match the predicate, otherwise FALSE.}
+\title{Returns TRUE iff all elements match the predicate, otherwise FALSE.
+This is equivalent to \code{function(pred, xs, skipNAs = TRUE) not(any(not \%.\% pred, xs))}.}
 \usage{
 all(pred, xs, skipNAs = TRUE)
 }

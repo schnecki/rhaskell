@@ -49,7 +49,7 @@ tail <- function(xs) xs[-1]
 
 #' Returns TRUE if any element matches the predicate, otherwise FALSE.
 #'
-#' \code{all :: (a -> Bool) -> [a] -> Bool}
+#' \code{any :: (a -> Bool) -> [a] -> Bool}
 #'
 #' @param pred predicate function
 #' @param xs list
@@ -65,6 +65,7 @@ any <- function(pred, xs, skipNAs = TRUE) {
 
 
 #' Returns TRUE iff all elements match the predicate, otherwise FALSE.
+#' This is equivalent to `function(pred, xs, skipNAs = TRUE) not(any(not %.% pred, xs))`.
 #'
 #' \code{all :: (a -> Bool) -> [a] -> Bool}
 #'
@@ -72,7 +73,13 @@ any <- function(pred, xs, skipNAs = TRUE) {
 #' @param xs list
 #'
 #' @export all
-all <- function(pred, xs, skipNAs = TRUE) not(any(not %.% pred, xs))
+all <- function(pred, xs, skipNAs = TRUE) {
+    for (i in base::seq_len(base::length(xs))) {
+        if (skipNAs && base::is.na(pred(xs[[i]]))) next
+        if (!pred(xs[[i]])) return(FALSE)
+    }
+    return(TRUE)
+}
 
 
 #' Take a number of elements from a list.
