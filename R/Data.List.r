@@ -251,7 +251,25 @@ zipWith3 <- function(f, xs, ys, zs) {
 }
 
 
+#' Sum of a list of numbers. O(n)
+#'
+#' \code{sum :: (Num a) => [a] -> a}
+#'
+#' @param xs list of numeric
+#'
+#' @export sum
+sum <- function(xs, rm.na = TRUE) {
+    res <- 0
+    for (x in xs) {
+        if (!rm.na || !is.na(x))
+            res <- res + x
+    }
+    return(res)
+}
+
 #' Concatenate a list of lists to a list.
+#'
+#' \code{concat :: [[a]] -> [a]}
 #'
 #' @param xxs list of lists
 #'

@@ -138,6 +138,15 @@ test_that("intersperse", {
 })
 
 
+test_that("sum", {
+    expect_equal(sum(list()), 0)
+    expect_equal(sum(list(NA, 1)), 1)
+    expect_equal(sum(list(1, NA, 1)), 2)
+    expect_equal(sum(list(1, NA, 1), rm.na = FALSE), (0 + NA))
+    expect_equal(sum(list(1.2, 2.2)), 3.4)
+})
+
+
 test_that("intercalate", {
     expect_equal(intercalate(list(0), map(list, as.list(1:3))), as.list(c(1, 0, 2, 0, 3)))
     expect_equal(intercalate(list(0), list()), list())

@@ -10,5 +10,5 @@ concat(xxs)
 \item{xxs}{list of lists}
 }
 \description{
-Concatenate a list of lists to a list.
+\code{concat :: [[a]] -> [a]}
 }
