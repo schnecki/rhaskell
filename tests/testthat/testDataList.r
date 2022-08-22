@@ -161,3 +161,12 @@ test_that("delete", {
     expect_equal(delete(0, as.list(c(1, 2, 3, 4))), as.list(c(1, 2, 3, 4)))
     expect_equal(delete(3, as.list(c(1, 2, 3, 3, 4))), as.list(c(1, 2, 3, 4)))
 })
+
+test_that("find", {
+    expect_equal(find(pEq(3), list()), Nothing())
+    expect_equal(find(pEq(3), as.list(c(3))), Just(3))
+    expect_equal(find(pEq(5), as.list(c(3))), Nothing())
+    expect_equal(find(pEq(3), as.list(c(1, 2, 3, 4))), Just(3))
+    expect_equal(find(pEq(0), as.list(c(1, 2, 3, 4))), Nothing())
+    expect_equal(find(pEq(3), as.list(c(1, 2, 3, 3, 4))), Just(3))
+})

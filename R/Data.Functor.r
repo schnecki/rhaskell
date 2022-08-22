@@ -16,6 +16,8 @@ Functor <- R6::R6Class(
 
         #' Functoric bind
         #'
+        #' @param fun function
+        #'
         #' \code{pure :: (a -> b) -> f a (=self) -> f b}
         fmap = function(fun) {
             stop("pure must be overwritten by the implementing class")

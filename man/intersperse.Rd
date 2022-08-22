@@ -13,5 +13,5 @@ intersperse(x, xs)
 \item{a}{element}
 }
 \description{
-\code{filter :: a -> [a] -> [a]}
+\code{intersperse :: a -> [a] -> [a]}
 }

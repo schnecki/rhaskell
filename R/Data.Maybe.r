@@ -17,6 +17,9 @@ Maybe <- R6::R6Class(
     ## Methods
     public = list(
         #' Do not use this function directly, but rather `Just::new(..)` and `Nothing$new()`!
+        #'
+        #' @param mValue value.
+        #'
         initialize = function(mValue = NULL) {
             super$initialize()
             private$.value <- mValue
@@ -26,20 +29,20 @@ Maybe <- R6::R6Class(
         ## Instance implementations of Functor, Applicative and Monad
         fmap = function(fun) {
             if (!base::is.function(fun)) stop("function Maybe$fmap(..) expects a function as argument")
-            if (self$isJust) res <- Just(fun(self$fromJust()))
-            else res <- Nothing()
+            if (self$isJust) res <- rhaskell::Just(fun(self$fromJust()))
+            else res <- rhaskell::Nothing()
             return(res)
         },
         pure = function(x) {
             return(Maybe$new(x))
         },
         apply = function(x) {
-            if (self$isJust && x$isJust) return(Just(private$.value(x$fromJust())))
-            else return(Nothing())
+            if (self$isJust && x$isJust) return(rhaskell::Just(private$.value(x$fromJust())))
+            else return(rhaskell::Nothing())
         },
         bind = function(fun) {
             if (self$isJust) return(fun(self$fromJust()))
-            else return(Nothing())
+            else return(rhaskell::Nothing())
         },
 
         #' Return the value. Fails if the encapsulated value is NULL! Better use `fromMaybe`!
@@ -52,6 +55,8 @@ Maybe <- R6::R6Class(
 
         #' Unwrap the value with a default.
         #'
+        #' @param def default value
+        #'
         #' \code{fromMaybe :: a -> Maybe a (=self) -> a}
         fromMaybe = function(def) {
             if (self$isJust) return(private$.value)
@@ -59,6 +64,9 @@ Maybe <- R6::R6Class(
         },
 
         #' Unwrap a maybe with default value and a function to apply.
+        #'
+        #' @param def default value
+        #' @param f function to apply in case of `Just()` value
         #'
         #' \code{maybe :: a -> (a -> b) -> Maybe a (=self) -> a}
         maybe = function(def, f) {

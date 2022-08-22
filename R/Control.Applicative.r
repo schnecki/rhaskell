@@ -13,9 +13,10 @@ Applicative <- R6::R6Class(
 
     ## Methods
     public = list(
-        initialize = function() {},
 
         #' Applicativeic bind. Also add a static method `pure` to the class!
+        #'
+        #' @param x element
         #'
         #' \code{pure :: a -> f a }
         pure = function(x) {
@@ -23,6 +24,8 @@ Applicative <- R6::R6Class(
         },
 
         #' Sequential application, i.e. (<*>)
+        #'
+        #' @param x Applicative element
         #'
         #' \code{apply :: f (a -> b) (=self) -> f a -> f b}
         apply = function(x) {

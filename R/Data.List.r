@@ -423,7 +423,7 @@ filter <- function(f, xs) {
 #' O(n). The intersperse function takes an element and a list and `intersperses' that element
 #' between the elements of the list.
 #'
-#' \code{filter :: a -> [a] -> [a]}
+#' \code{intersperse :: a -> [a] -> [a]}
 #'
 #' @param a  element
 #' @param xs list of elements
@@ -454,7 +454,7 @@ intercalate <- function(xs, xss) concat(intersperse(xs, xss))
 
 #' @delete x xs@ removes the first occurance of `x` in list `xs`.
 #'
-#' delete :: Eq a => a -> [a] -> [a]
+#' \code{delete :: Eq a => a -> [a] -> [a]}
 #'
 #' @param x element
 #' @param xs list of elements
@@ -477,4 +477,21 @@ delete <- function(x, xs) {
         return(res)
     else
         return(xs)
+}
+
+
+#' @find p xs@ finds the first matching element in the list `xs` using predicate `p`, return a `Maybe` object.
+#'
+#' \code{find :: (a -> Bool) -> [a] -> Maybe a}
+#'
+#' @param p predicate function
+#' @param xs list of elements
+#'
+#' @export find
+find <- function(p, xs) {
+    if (base::length(xs) < 1) return(rhaskell::Nothing())
+    for (x in xs) {
+        if (p(x)) return(rhaskell::Just(x))
+    }
+    return(rhaskell::Nothing())
 }

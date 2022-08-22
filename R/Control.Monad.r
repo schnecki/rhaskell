@@ -17,6 +17,8 @@ Monad <- R6::R6Class(
 
         #' Monadic bind
         #'
+        #' @param fun function taking pure value and return monadic value
+        #'
         #' \code{bind :: m a (=self) -> (a -> m b) -> m b}
         bind = function(fun) {
             stop("bind must be overwritten by the implementing class")
