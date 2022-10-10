@@ -39,6 +39,18 @@ Maybe monad implementation.
 \if{html}{\out{<div class="r">}}\preformatted{Maybe$new(mValue = NULL)}\if{html}{\out{</div>}}
 }
 
+\subsection{Arguments}{
+\if{html}{\out{<div class="arguments">}}
+\describe{
+\item{\code{mValue}}{value.
+
+Return the value. Fails if the encapsulated value is NULL! Better use \code{fromMaybe}!
+
+\code{isJust :: Maybe a (=self) -> a}
+Unwrap the value with a default.}
+}
+\if{html}{\out{</div>}}
+}
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-fmap"></a>}}

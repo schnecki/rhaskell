@@ -135,9 +135,12 @@ foldl <- function(f, acc, xs) {
     if (base::length(xs) == 0) {
         return(acc)
     } else {
-        for (i in base::seq_len(base::length(xs))) {
-            acc <- f(acc, xs[[i]])
+        for (x in xs) {
+            acc <- f(acc, x)
         }
+        ## for (i in base::seq_len(base::length(xs))) {
+        ##     acc <- f(acc, xs[[i]])
+        ## }
         return(acc)
         ## ####################################################################################
         ## This would be the correct (state-less) implementation, but R does not like recusion:
@@ -357,6 +360,7 @@ map <- function(f, xs) {
     for (i in base::seq_len(base::length(xs))) {
         res[[i]] <- f(xs[[i]])
     }
+    ## if (length(res) == 1) return(unlist(res))
     return(res)
 }
 
