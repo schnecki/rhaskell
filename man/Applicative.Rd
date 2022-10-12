@@ -2,11 +2,11 @@
 % Please edit documentation in R/Control.Applicative.r
 \name{Applicative}
 \alias{Applicative}
-\title{Applicative class.}
+\title{Applicative class. This also defines the interface for \code{Alternative}.}
 \description{
-Applicative class.
+Applicative class. This also defines the interface for \code{Alternative}.
 
-Applicative class.
+Applicative class. This also defines the interface for \code{Alternative}.
 }
 \section{Super class}{
 \code{\link[rhaskell:Functor]{rhaskell::Functor}} -> \code{Applicative}
@@ -16,6 +16,8 @@ Applicative class.
 \itemize{
 \item \href{#method-pure}{\code{Applicative$pure()}}
 \item \href{#method-apply}{\code{Applicative$apply()}}
+\item \href{#method-empty}{\code{Applicative$empty()}}
+\item \href{#method-alt}{\code{Applicative$alt()}}
 \item \href{#method-clone}{\code{Applicative$clone()}}
 }
 }
@@ -59,10 +61,34 @@ Sequential application, i.e. (<*>)}
 \describe{
 \item{\code{x}}{Applicative element
 
-\code{apply :: f (a -> b) (=self) -> f a -> f b}}
+\code{apply :: f (a -> b) (=self) -> f a -> f b}
+Identity of \code{alt}
+
+\code{empty :: f a}
+An associative binary operation
+
+\code{alt :: f a (=self) -> f a -> f a}}
 }
 \if{html}{\out{</div>}}
 }
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-empty"></a>}}
+\if{latex}{\out{\hypertarget{method-empty}{}}}
+\subsection{Method \code{empty()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{Applicative$empty()}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-alt"></a>}}
+\if{latex}{\out{\hypertarget{method-alt}{}}}
+\subsection{Method \code{alt()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{Applicative$alt(other)}\if{html}{\out{</div>}}
+}
+
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-clone"></a>}}

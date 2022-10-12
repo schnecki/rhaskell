@@ -1,4 +1,4 @@
-#' Applicative class.
+#' Applicative class. This also defines the interface for `Alternative`.
 #'
 #' @export Applicative
 #' @exportClass Applicative
@@ -30,7 +30,26 @@ Applicative <- R6::R6Class(
         #' \code{apply :: f (a -> b) (=self) -> f a -> f b}
         apply = function(x) {
             stop("apply must be overwritten by the implementing class")
+        },
+
+        ## ALTERANTIVE
+        ##
+        ## Alternative class (Info: As multiple inheritance is not allowed, we define it here)
+
+        #' Identity of `alt`
+        #'
+        #' \code{empty :: f a}
+        empty = function() {
+            stop("Alternative instance not defined. See Applicative.r")
+        },
+
+        #' An associative binary operation
+        #'
+        #' \code{alt :: f a (=self) -> f a -> f a}
+        alt = function(other) {
+            stop("Alternative instance not defined. See Applicative.r")
         }
+
 
     ),
 
@@ -39,8 +58,3 @@ Applicative <- R6::R6Class(
     active = list(
     )
 )
-
-
-Applicative$pure <- function(x) {
-
-}

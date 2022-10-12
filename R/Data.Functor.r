@@ -18,9 +18,9 @@ Functor <- R6::R6Class(
         #'
         #' @param fun function
         #'
-        #' \code{pure :: (a -> b) -> f a (=self) -> f b}
+        #' \code{fmap :: (a -> b) -> f a (=self) -> f b}
         fmap = function(fun) {
-            stop("pure must be overwritten by the implementing class")
+            stop("fmap must be overwritten by the implementing class")
         }
 
     ),
@@ -29,6 +29,4 @@ Functor <- R6::R6Class(
     ## they call a function. They are always publicly visible.
     active = list(
     )
-
-
 )

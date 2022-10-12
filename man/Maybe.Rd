@@ -18,6 +18,8 @@ Maybe monad implementation.
 \item \href{#method-fmap}{\code{Maybe$fmap()}}
 \item \href{#method-pure}{\code{Maybe$pure()}}
 \item \href{#method-apply}{\code{Maybe$apply()}}
+\item \href{#method-empty}{\code{Maybe$empty()}}
+\item \href{#method-alt}{\code{Maybe$alt()}}
 \item \href{#method-bind}{\code{Maybe$bind()}}
 \item \href{#method-fromJust}{\code{Maybe$fromJust()}}
 \item \href{#method-fromMaybe}{\code{Maybe$fromMaybe()}}
@@ -76,6 +78,24 @@ Unwrap the value with a default.}
 \subsection{Method \code{apply()}}{
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{Maybe$apply(x)}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-empty"></a>}}
+\if{latex}{\out{\hypertarget{method-empty}{}}}
+\subsection{Method \code{empty()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{Maybe$empty()}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-alt"></a>}}
+\if{latex}{\out{\hypertarget{method-alt}{}}}
+\subsection{Method \code{alt()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{Maybe$alt(other)}\if{html}{\out{</div>}}
 }
 
 }

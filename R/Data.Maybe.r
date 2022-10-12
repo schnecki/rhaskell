@@ -10,8 +10,6 @@ Maybe <- R6::R6Class(
     ## Properties
     private = list(
         .value = NULL
-
-
     ),
 
     ## Methods
@@ -26,20 +24,31 @@ Maybe <- R6::R6Class(
             return(self)
         },
 
-        ## Instance implementations of Functor, Applicative and Monad
+        ## Instance implementations of Functor, Applicative, Alternative and Monad
+        ## Functor
         fmap = function(fun) {
             if (!base::is.function(fun)) stop("function Maybe$fmap(..) expects a function as argument")
             if (self$isJust) res <- rhaskell::Just(fun(self$fromJust()))
             else res <- rhaskell::Nothing()
             return(res)
         },
+
+        ## Applicative and Alternative
         pure = function(x) {
-            return(Maybe$new(x))
+            return(rhaskell::Just(x))
         },
         apply = function(x) {
             if (self$isJust && x$isJust) return(rhaskell::Just(private$.value(x$fromJust())))
             else return(rhaskell::Nothing())
         },
+        empty = function() return(rhaskell::Nothing()),
+        alt = function(other) {
+            if (self$isJust) return(self)
+            else return(other)
+        },
+
+
+        ## Monad
         bind = function(fun) {
             if (self$isJust) return(fun(self$fromJust()))
             else return(rhaskell::Nothing())
@@ -97,6 +106,11 @@ Maybe$pure <- function(x) {
     return(Maybe$new(x))
 }
 
+#' Create a maybe from a nullable variable
+Maybe$fromNullable <- function(x) {
+    if (base::is.null(x)) return(rhaskell::Nothing())
+    else return(rhaskell::Just(x))
+}
 
 #' Constructor class for type `Maybe`.
 #'
@@ -111,4 +125,13 @@ Just <- function(value) {
 #' @export Nothing
 Nothing <- function() {
     return(Maybe$new(NULL))
+}
+
+#' Function maybe. See also `Maybe$maybe`
+#'
+#' \code{maybe :: b -> (a -> b) -> Maybe a -> b}
+#'
+#' @export maybe
+maybe <- function(def, f, ma) {
+    ma$maybe(def, f)
 }

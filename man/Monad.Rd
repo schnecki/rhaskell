@@ -23,7 +23,9 @@ Monad class.
 \out{<details open ><summary>Inherited methods</summary>}
 \itemize{
 \item \out{<span class="pkg-link" data-pkg="rhaskell" data-topic="Functor" data-id="fmap">}\href{../../rhaskell/html/Functor.html#method-fmap}{\code{rhaskell::Functor$fmap()}}\out{</span>}
+\item \out{<span class="pkg-link" data-pkg="rhaskell" data-topic="Applicative" data-id="alt">}\href{../../rhaskell/html/Applicative.html#method-alt}{\code{rhaskell::Applicative$alt()}}\out{</span>}
 \item \out{<span class="pkg-link" data-pkg="rhaskell" data-topic="Applicative" data-id="apply">}\href{../../rhaskell/html/Applicative.html#method-apply}{\code{rhaskell::Applicative$apply()}}\out{</span>}
+\item \out{<span class="pkg-link" data-pkg="rhaskell" data-topic="Applicative" data-id="empty">}\href{../../rhaskell/html/Applicative.html#method-empty}{\code{rhaskell::Applicative$empty()}}\out{</span>}
 \item \out{<span class="pkg-link" data-pkg="rhaskell" data-topic="Applicative" data-id="pure">}\href{../../rhaskell/html/Applicative.html#method-pure}{\code{rhaskell::Applicative$pure()}}\out{</span>}
 }
 \out{</details>}

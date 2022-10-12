@@ -38,7 +38,7 @@ Functor class.
 \describe{
 \item{\code{fun}}{function
 
-\code{pure :: (a -> b) -> f a (=self) -> f b}}
+\code{fmap :: (a -> b) -> f a (=self) -> f b}}
 }
 \if{html}{\out{</div>}}
 }
