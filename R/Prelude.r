@@ -11,6 +11,17 @@ void <- function(f) {
     invisible(f)
 }
 
+#' Identity function
+#'
+#' \code{id :: a -> a}
+#'
+#' @param x a
+#'
+#' @export id
+id <- function(x) {
+    return(x)
+}
+
 #' Standard math. function composition: \code{(f %.% g)(x) == f(g(x))}
 #'
 #' \code{\%.\% :: (b -> c) -> (a -> b) -> (a -> c)}

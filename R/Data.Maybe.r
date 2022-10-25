@@ -50,8 +50,12 @@ Maybe <- R6::R6Class(
 
         ## Monad
         bind = function(fun) {
-            if (self$isJust) return(fun(self$fromJust()))
-            else return(rhaskell::Nothing())
+            if (self$isJust) {
+                res <- fun(self$fromJust())
+                if (!"Maybe" %in% class(res)) stop("Maybe$fmap: Supplied function must return a Maybe object!")
+                return(res)
+            }
+            else return(self)
         },
 
         #' Return the value. Fails if the encapsulated value is NULL! Better use `fromMaybe`!
