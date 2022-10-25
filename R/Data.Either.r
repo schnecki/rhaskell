@@ -94,7 +94,7 @@ Either <- R6::R6Class(
         #' \code{fromRightOrStop :: Either Character b (=self) -> b}
         fromRightOrStop = function() {
             if (self$isRight) return(private$.value)
-            else stop(base::as.string(private$.value))
+            else stop(base::as.character(private$.value))
         }
 
     ),
@@ -124,6 +124,11 @@ Either$pure <- function(x) {
 Either$fromNullable <- function(leftVal, x) {
     if (base::is.null(x)) return(rhaskell::Left(leftVal))
     else return(rhaskell::Right(x))
+}
+
+#' Helper function for function composition.
+Either$fromRightOrStop <- function(x) {
+    return(x$fromRightOrStop())
 }
 
 #' Constructor class for type `Either`.
